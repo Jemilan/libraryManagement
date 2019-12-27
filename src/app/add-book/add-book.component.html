@@ -1,0 +1,12 @@
+
+<form (ngSubmit)="addBook()">
+    <h2 class="header" >Add Book</h2>
+    <input type="text" [(ngModel)]="bookDetail.bookName" name="bookName" placeholder="Book Name"> 
+    <input type="text" [(ngModel)]="bookDetail.bookAuthorName" name="bookAuthorName" placeholder="Author Name"> 
+    <input type="text" [(ngModel)]="bookDetail.authorCountry "  name="authorCountry" placeholder="Author Country"> 
+    <input type="text" [(ngModel)]="bookDetail.bookIsbnNumber"  name="bookIsbnNumber" placeholder="Book ISBN Number"> 
+    <input type="text" [(ngModel)]="bookDetail.catogory"  name="catogory" placeholder="Book Catogory"> 
+
+    <input type="submit" value="Add Book">
+</form>
+

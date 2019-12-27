@@ -1,0 +1,25 @@
+
+nav{
+    padding: 10px;
+    color: white;
+    margin-left: 1em;
+    
+    a {
+        text-decoration: none;
+    }    
+    display: block;
+    background-color: #0000ff91;
+    p{
+        padding: 0px;
+        margin: 0px;
+        float:right;
+        
+    }
+    div{
+        display: inline;
+        a{
+            color: white;
+            margin-left: 1em;
+        }
+    }
+}

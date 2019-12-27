@@ -1,0 +1,23 @@
+	<h2>Search By Book Name</h2>
+	<form (ngSubmit)="searchBooksByName()">
+		<input type="text" [(ngModel)]="bookName" name="bookName" > 
+        <input type="submit" value="Search">
+	</form>
+	<h2>Search By ISBN Number</h2>
+	<form (ngSubmit)="searchBooksById()" method="get">
+		<input type="text" [(ngModel)]="bookId" name="bookIsbnNumber" required="required" pattern="(\d)*"> 
+        <input type="submit" value="Search">
+    </form>
+    <table class="users" *ngIf=bookDetail>
+		<thead><th>Book Id</th><th>Book Name</th>
+		<th>Book ISBN Number</th><th>Book Author Names</th></thead>
+		<tr *ngFor="let book of bookDetail" 
+		>
+			<td >{{book.bookId}}</td><td> {{book.bookName}}</td>
+			<td >{{book.bookIsbnNumber}}</td><td> {{book.bookAuthorName}}</td>
+			<td><button	(click)="requestBook(book)">Request Book</button></td>
+			</tr>
+	</table>    
+	<div *ngIf=message>
+		{{message}}
+	</div>

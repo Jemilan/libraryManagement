@@ -1,0 +1,44 @@
+
+<div *ngIf="(lentDetails|json)!='[]'">
+    <h2>Currently Rented Books</h2>
+
+    <table class="users" >
+    <th>Book Id</th><th>Book Name</th>
+    <th>Book ISBN Number</th><th>Book Author Names</th>
+    <th>Author Country</th><th>catogory</th>
+    <tr *ngFor="let book of lentDetails" 
+    >
+    
+        <td >{{book.bookId}}</td>
+        <td>{{book.bookName}}</td>
+        <td>{{book.bookIsbnNumber}}</td>
+        <td>{{book.bookAuthorName}}</td>
+        <td>{{book.authorCountry}}</td>
+        <td>{{book.catogory}}</td>
+        <td><button	(click)="returnBook(book)">Return Book</button></td>
+    </tr>
+        
+</table>
+</div>
+<div *ngIf="(lentHistory|json)!='[]'"><h2>The Books you've already read</h2>
+
+<table class="users" >
+    <th>Book Id</th><th>Book Name</th>
+    <th>Book ISBN Number</th><th>Book Author Names</th>
+    <th>Author Country</th><th>catogory</th>
+    <tr *ngFor="let book of lentHistory" 
+    >
+    
+    <td >{{book.bookId}}</td>
+    <td>{{book.bookName}}</td>
+    <td>{{book.bookIsbnNumber}}</td>
+    <td>{{book.bookAuthorName}}</td>
+    <td>{{book.authorCountry}}</td>
+    <td>{{book.catogory}}</td>
+</tr>
+  
+</table>
+</div>
+<div *ngIf=message>
+    {{message}}
+</div>

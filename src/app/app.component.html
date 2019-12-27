@@ -1,0 +1,26 @@
+<nav>
+  <div>
+  <a routerLink="/">Home</a>
+
+  </div> 
+  <div id="admin-options" *ngIf=verifyAdmin()>
+    <a routerLink="/register">Add User</a> <a routerLink="/addBook">Add
+      Books</a> <a routerLink="approvel">Notification</a>
+  </div>
+  <div id="non-user-options" >
+    <a routerLink="/searchBook">Search Book</a>
+  </div>
+  <div *ngIf=verifyUser()>
+  <a routerLink="/lentBooks">Lent Books</a> 
+  <a routerLink="/lentBooks">History</a>
+  </div>
+<div *ngIf=authenticated()>
+  <p>Welcome {{userDetail.userName}}</p>
+  <a routerLink="/" (click)=logout()>Log Out</a>
+</div>
+<div *ngIf=!authenticated()>   
+   <a routerLink="/login">Log In</a>
+</div>
+</nav>
+<router-outlet></router-outlet>
+<app-messages></app-messages>
