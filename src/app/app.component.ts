@@ -1,20 +1,36 @@
-import { Component} from '@angular/core';
+import { Component, DoCheck} from '@angular/core';
 import { LoginService } from './login.service';
 import { UserDetail } from './UserDetail';
 import {environment}  from '../environments/environment'
+import { RequestService } from './request.service';
+import { RequestDetail } from './RequestDetail';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements DoCheck{
+  ngDoCheck(): void {
+    if(this.router.url=='/admin/approvel'){
+      this.length=0;
+    }
+    if(this.verifyAdmin()&&  this.flag){
+      this.flag=false
+      this.lendingService.getNotifications()
+      .subscribe(requestDetail=>{this.requestDetail=requestDetail;
+        this.getLength();
+      });
+    }
+  }
+  flag=true;
   userDetail:UserDetail;
   title = 'libraryManagement';
-  constructor(private loginService:LoginService){
+  requestDetail: Map<String, RequestDetail[]>;
+  length: number=0;
+  constructor(private router:Router,private route:ActivatedRoute,private loginService:LoginService,private lendingService:RequestService){
     this.loginService.authenticate(undefined);
-    console.log(environment.apiUrl);
-    console.log(loginService.role)
   }
   authenticated(){
     this.userDetail=this.loginService.userDetail;
@@ -27,6 +43,17 @@ export class AppComponent {
     return this.loginService.verifyUser();
   }
   logout(){
+    this.flag=true;
     this.loginService.logout();
   }
+  getLength(){
+    for(var property in this.requestDetail ){
+      // let length:number=0;
+      this.length+=this.requestDetail[property].length;
+      // this.length=length;
+    }
+  }
+  ngOnInit() {
+  }
+
 }

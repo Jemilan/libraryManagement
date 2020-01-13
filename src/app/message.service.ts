@@ -10,18 +10,17 @@ export class MessageService {
   }
   message:string="";
   errorMessage:string;
-  // content=new Observable(observer=>{
-  //   setInterval(()=>observer.next(this.getmessage()),10000);
-  // }
-  // );
   constructor() { }
   addMessage(message:string){
+    this.errorMessage=""
+    setTimeout(()=>{
+      console.log("clearing"),this.message=""},5000);
     this.message=message;
-    setTimeout(this.clear,10000);
   }
   addError(message:string){
+    this.message=""
+    setTimeout(()=>{this.errorMessage=""},5000)
     this.errorMessage=message;
-    setTimeout(this.clear,500)
   }
   clear(){
     this.message="";

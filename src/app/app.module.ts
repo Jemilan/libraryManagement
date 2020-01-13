@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
-import {NgxPaginationModule} from 'ngx-pagination'
+import {MatSidenavModule} from '@angular/material/sidenav'
+import {MatListModule} from '@angular/material/list'
+import {MatTableModule,MatPaginatorModule,MatSortModule} from '@angular/material'
 
 
 import { CommonModule } from '@angular/common';
@@ -9,30 +11,30 @@ import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchBooksComponent } from './search-books/search-books.component';
-import { AddBookComponent } from './add-book/add-book.component';
-import { RegisterComponent } from './register/register.component';
-import { ApprovelComponent } from './approvel/approvel.component';
-import { LentDeatillComponent } from './lent-deatill/lent-deatill.component';
 import { LoginComponentComponent } from './login-component/login-component.component';
 import { MessagesComponent } from './messages/messages.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminModule } from './admin/admin.module';
+import { UserModule } from './user/user.module';
+import { MatBadgeModule } from '@angular/material/badge';
+import {MatInputModule} from '@angular/material/input'
+import {MatButtonModule} from '@angular/material/button'
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBooksComponent,
-    AddBookComponent,
-    RegisterComponent,
-    ApprovelComponent,
-    LentDeatillComponent,
     LoginComponentComponent,
-    MessagesComponent
+    MessagesComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,AdminModule,UserModule,
     AppRoutingModule,FormsModule,
     CommonModule,HttpClientModule,
-    NgxPaginationModule
-    ],
+    BrowserAnimationsModule,MatSidenavModule,MatListModule,MatBadgeModule,
+    MatInputModule,MatButtonModule,MatTableModule,MatPaginatorModule,
+    MatSortModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

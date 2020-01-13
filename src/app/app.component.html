@@ -1,26 +1,40 @@
 <nav>
   <div>
+  <p class="title">{{title}}</p>
   <a routerLink="/">Home</a>
-
   </div> 
-  <div id="admin-options" *ngIf=verifyAdmin()>
-    <a routerLink="/register">Add User</a> <a routerLink="/addBook">Add
-      Books</a> <a routerLink="approvel">Notification</a>
-  </div>
   <div id="non-user-options" >
     <a routerLink="/searchBook">Search Book</a>
   </div>
-  <div *ngIf=verifyUser()>
-  <a routerLink="/lentBooks">Lent Books</a> 
-  <a routerLink="/lentBooks">History</a>
-  </div>
-<div *ngIf=authenticated()>
+  <div *ngIf=authenticated() class="logged">
   <p>Welcome {{userDetail.userName}}</p>
   <a routerLink="/" (click)=logout()>Log Out</a>
 </div>
-<div *ngIf=!authenticated()>   
+<div *ngIf=!authenticated() class="login">   
    <a routerLink="/login">Log In</a>
 </div>
 </nav>
-<router-outlet></router-outlet>
+
+  <mat-sidenav-container>
+    <mat-sidenav opened mode="side" *ngIf=verifyUser()>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/lentBooks">Lent Books</a> 
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav opened mode="side" hasBackdrop=false *ngIf=verifyAdmin()>
+      
+      
+    <mat-nav-list>
+      <a  mat-list-item routerLink="/admin/register">Add User</a> 
+      <a mat-list-item routerLink="/admin/addBook">Add Books</a> 
+      <mat-list-item><a  matBadge="{{length}}"    routerLink="/admin/approvel">Notification</a>
+      </mat-list-item><a mat-list-item routerLink="/admin/users">User Detail</a>  
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>  
+  </mat-sidenav-content>
+  </mat-sidenav-container>
+
+
 <app-messages></app-messages>

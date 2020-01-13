@@ -1,0 +1,41 @@
+h2{
+    color: rgba($color:#00c3ffa1, $alpha: 0.5);
+    font-style: italic;
+    font-family: monospace;
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+}
+form{
+    display: inline;
+    display: flex;
+    justify-content: center;
+}
+table{
+    background-color: white;
+    width: 100%;
+    tr:nth-child(even) {background-color: #bec9cca1;
+    color: blue;
+    button{
+        color: blue;
+        background-color: initial;
+        border: none;
+    
+        cursor: pointer;
+    }
+        td{
+         padding:0px;
+        }
+    } 
+    margin-top: 5%;
+    button{
+        padding: 0px;
+    }
+    tr{
+        height: 30px;
+        }
+    thead{
+        height: 20px;
+        background-color: rgba($color: #386faf, $alpha: 1.0);
+    }
+}

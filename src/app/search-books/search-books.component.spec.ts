@@ -1,14 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchBooksComponent } from './search-books.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { MessageService } from '../message.service';
+import { BookService } from '../book.service';
 
 describe('SearchBooksComponent', () => {
   let component: SearchBooksComponent;
   let fixture: ComponentFixture<SearchBooksComponent>;
 
   beforeEach(async(() => {
+    const bookService:Partial<BookService>={};
     TestBed.configureTestingModule({
-      declarations: [ SearchBooksComponent ]
+      imports:[CommonModule,FormsModule],
+      declarations: [ SearchBooksComponent ],
+      providers:[MessageService,{provide:BookService,useValue:bookService}]
     })
     .compileComponents();
   }));

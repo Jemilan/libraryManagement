@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { UserDetail } from './UserDetail';
-import { Router } from '@angular/router';
+import { Router, RouterLinkActive } from '@angular/router';
 import { MessageService } from './message.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  getUser(currentValue: string) {
+    return this.httpClient.get<UserDetail>(this.const+"getUser?userName="+currentValue,{headers:this.authorizationHeader});
+  }
+  getAllUsers() {
+    return this.httpClient.get<UserDetail[]>(this.const+"getAll",{headers:this.authorizationHeader})
+  }
   logout() {
     this.role="";
     this.authenticated=false;
@@ -34,9 +40,10 @@ export class LoginService {
       'Authorization' : 'Basic ' + btoa(credentials.username + ':' + credentials.password),
       'X-Requested-With': 'XMLHttpRequest' // to suppress 401 browser popup
       } : {});
-    return this.httpClient.get(this.const+"user",{headers:this.authorizationHeader});
+    return this.httpClient.post(this.const+"user",null,{headers:this.authorizationHeader});
   }
   authenticate(credentials){
+    console.log(credentials)
     this.authenticateCredentials(credentials).subscribe(response=>{ 
       if(response){
       if(response['principal'])
@@ -51,17 +58,20 @@ export class LoginService {
   },error=>{
     if(error.status=="401"){
       this.messageService.addError("Invalid Credentials");
-      setTimeout(this.messageService.clear,500)
+      setTimeout(this.messageService.clear,5000)
     }
   });
   }
   verifyAdmin(){
     if(this.role=="ROLE_Admin"){
-      console.log("true")
       return true;
     }  
     else 
     return false;
   }
+  register(registerDetail: UserDetail) {
+    return this.httpClient.post<string>(this.const+"register",registerDetail);
+  }
+
 }
 

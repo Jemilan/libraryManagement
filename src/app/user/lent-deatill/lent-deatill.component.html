@@ -1,0 +1,119 @@
+
+<div *ngIf="(lentDetails|json)!='[]'">
+    <h2>Currently Rented Books</h2>
+
+    <table class="users" >
+    <th>Book Id</th><th>Book Name</th>
+    <th>Book ISBN Number</th><th>Book Author Names</th>
+    <th>Author Country</th><th>catogory</th>
+    <tr *ngFor="let book of lentDetails" 
+    >
+    
+        <td >{{book.bookId}}</td>
+        <td>{{book.bookName}}</td>
+        <td>{{book.bookIsbnNumber}}</td>
+        <td>{{book.bookAuthorName}}</td>
+        <td>{{book.authorCountry}}</td>
+        <td>{{book.catogory}}</td>
+        <td><button mat-button	(click)="returnBook(book)">Return Book</button></td>
+    </tr>
+        
+</table>
+</div>
+<div *ngIf="(lentHistory|json)!='[]'"><h2>The Books you've already read</h2>
+
+<table class="users" >
+    <th>Book Id</th><th>Book Name</th>
+    <th>Book ISBN Number</th><th>Book Author Names</th>
+    <th>Author Country</th><th>catogory</th>
+    <tr *ngFor="let book of lentHistory" 
+    >
+    
+    <td >{{book.bookId}}</td>
+    <td>{{book.bookName}}</td>
+    <td>{{book.bookIsbnNumber}}</td>
+    <td>{{book.bookAuthorName}}</td>
+    <td>{{book.authorCountry}}</td>
+    <td>{{book.catogory}}</td>
+</tr>
+  
+</table>
+</div>
+<div *ngIf=message>
+    {{message}}
+</div>
+<div class="table">	<table mat-table [dataSource]="lentHistory">
+    <ng-container matColumnDef="bookId">
+        <th mat-header-cell *matHeaderCellDef>Book Id</th>
+        <td mat-cell *matCellDef="let request"><span>{{request.bookId}}</span></td>
+    </ng-container>
+    <ng-container matColumnDef="bookIsbnNumber">
+        <th mat-header-cell *matHeaderCellDef>Book ISBN Number</th>
+        <td mat-cell *matCellDef="let request">{{request.bookIsbnNumber}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="bookAuthorName">
+        <th mat-header-cell *matHeaderCellDef>Book Author Name</th>
+        <td mat-cell *matCellDef="let request">{{request.bookAuthorName}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="bookName">
+        <th mat-header-cell *matHeaderCellDef mat->Book Name</th>
+        <td mat-cell *matCellDef="let request">{{request.bookName}}</td>
+    
+    </ng-container>
+    
+    <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let request">
+    </td>
+    
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="rowDetail"></tr>
+    <tr mat-row *matRowDef="let row;columns:rowDetail"></tr>
+    
+</table>
+<div class="table">	<table mat-table [dataSource]="lentDetails">
+    <ng-container matColumnDef="bookId">
+        <th mat-header-cell *matHeaderCellDef>Book Id</th>
+        <td mat-cell *matCellDef="let request"><span>{{request.bookId}}</span></td>
+    </ng-container>
+    <ng-container matColumnDef="bookIsbnNumber">
+        <th mat-header-cell *matHeaderCellDef>Book ISBN Number</th>
+        <td mat-cell *matCellDef="let request">{{request.bookIsbnNumber}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="bookAuthorName">
+        <th mat-header-cell *matHeaderCellDef>Book Author Name</th>
+        <td mat-cell *matCellDef="let request">{{request.bookAuthorName}}</td>
+    </ng-container>
+    
+    <ng-container matColumnDef="bookName">
+        <th mat-header-cell *matHeaderCellDef mat->Book Name</th>
+        <td mat-cell *matCellDef="let request">{{request.bookName}}</td>
+    
+    </ng-container>
+    <ng-container matColumnDef="bookAuthorName">
+        <th mat-header-cell *matHeaderCellDef mat->Book Author Name</th>
+        <td mat-cell *matCellDef="let request">{{request.bookAuthorName}}</td>
+    
+    </ng-container>
+    <ng-container matColumnDef="catogory">
+        <th mat-header-cell *matHeaderCellDef mat->Catogory</th>
+        <td mat-cell *matCellDef="let request">{{request.catogory}}</td>
+    
+    </ng-container>
+    
+    <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let request">
+    </td>
+    
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="rowDetail"></tr>
+    <tr mat-row *matRowDef="let row;columns:rowDetail"></tr>
+    
+</table>
+
+<!-- <mat-paginator [pageSizeOptions]="[1,3,5]"></mat-paginator> -->
+</div>

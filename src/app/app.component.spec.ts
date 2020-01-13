@@ -1,16 +1,24 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { MessagesComponent } from './messages/messages.component';
+import { LoginService } from './login.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
+    const loginService:Partial<LoginService>={
+      authenticate(){
+        this.authenticated=true;
+      }
+    }
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,MessagesComponent
       ],
+      providers:[{provide:LoginService,useValue:loginService}]
     }).compileComponents();
   }));
 
@@ -26,10 +34,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('libraryManagement');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('libraryManagement app is running!');
-  });
 });

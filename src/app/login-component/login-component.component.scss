@@ -1,4 +1,9 @@
+$primary:#0000ff91;
+$accent:rgba($color:#00c3ffa1, $alpha: 0.5);
+$secondary:rgba($color: #00c3ffa1, $alpha: 1.0);
+$warn:red;
 .login-form{
+    // background-color: $primary;
     align-content: center;
     // justify-content: center;
     // flex-direction: column;
@@ -6,7 +11,7 @@
     margin-left: 40%;
     width: 20%;
     .header{
-        color: rgba($color:#00c3ffa1, $alpha: 0.5);
+        color: $accent;
         font-style: italic;
         font-family: monospace;
         font-size: 3em;
@@ -24,6 +29,10 @@
     border: none;
     padding: 5%;
     width: 50%;
-    background: rgba($color: #00c3ffa1, $alpha: 1.0);
+    background: $secondary;
     color: white;
+    margin-left: 25%;
+}
+.warn{
+    background: $warn;
 }

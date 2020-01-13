@@ -1,3 +1,7 @@
+div{
+    float: left;
+    width: 50%;
+}
 h2{
     color: rgba($color:#00c3ffa1, $alpha: 0.5);
     font-style: italic;
@@ -7,27 +11,22 @@ h2{
     justify-content: center;
 }
 form{
-    display: inline;
     display: flex;
     justify-content: center;
-}
-table{
-    tr:nth-child(even) {background-color: #00c3ffa1;
-    color: white;
-        button{
-            color: white;
-            background-color: initial;
-            border: none;
-        }
-        td{
-            padding:0px;
-        }
-} 
-    margin-top: 5%;
+    width: 100%;
+    input[type="text"]{
+        font-size: 30px;
+        height: 30px;
+        width: 90%;
+    }
     button{
-        padding: 0px;
+        svg{
+            height: 30px;
+            width: 30px;;
+        }
     }
-    thead{
-        background-color: rgba($color: #386faf, $alpha: 1.0);
-    }
+}
+.table{
+    width: 50%;
+    align-content: center;
 }

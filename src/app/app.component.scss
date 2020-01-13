@@ -1,19 +1,29 @@
 
 nav{
     padding: 10px;
+    margin: 0px;
     color: white;
-    margin-left: 1em;
-    
+    .title{
+        position: absolute;
+        margin-left: 45%;
+    } 
+    .login{
+        float: right;
+    }   
     a {
         text-decoration: none;
     }    
     display: block;
     background-color: #0000ff91;
-    p{
+    .logged{
         padding: 0px;
         margin: 0px;
         float:right;
-        
+        display: flex;
+        flex-direction: row;      
+    }
+    p{
+        margin: 0px;
     }
     div{
         display: inline;
@@ -23,3 +33,31 @@ nav{
         }
     }
 }
+app-messages{
+    bottom: 0px;
+    position: absolute;
+    background-color: #0000ff91;
+    width: 100%;
+}
+mat-sidenav-container,mat-sidenav-content{
+    height: 100%;
+}
+
+mat-sidenav-container{
+    background-color: unset;
+    mat-sidenav{
+
+        width: 10%;
+        background-color: #0000ff91;
+        bottom: unset;
+        padding-bottom: 10px;
+        mat-nav-list a{
+            color: white;
+        }
+    }
+    mat-sidenav-content{
+        width: 90%;
+        float: right;
+    }
+}
+

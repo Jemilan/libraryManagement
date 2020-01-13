@@ -1,0 +1,41 @@
+
+<div *ngIf=userDetail class="userDetail">
+
+        <span class="user-data">{{userDetail.userName}}</span>
+        <span class="user-data">{{userDetail.email}}</span>
+        <span class="user-data">{{userDetail.phoneNumber}}</span>
+        <span class="drop-down"  (click)="toggle()" >show more</span>
+        
+        <span class="drop-down-content" *ngIf="isClicked"><ul>
+            <li (click)="getRequestedBooks()" class="more-options">Requested Books</li>
+            <li (click)="getReturnedBooks()" class="more-options">Returned Books</li>
+            <li (click)="requestedBooks()" class="more-options">Lented Books</li>
+        </ul>
+        </span>
+        <mat-expansion-panel  >
+            <mat-expansion-panel-header><mat-panel-title >Show More</mat-panel-title><mat-panel-description >Show More</mat-panel-description></mat-expansion-panel-header>
+            <mat-button-toggle-group>
+                <mat-button-toggle (click)="getRequestedBooks()" class="more-options">Requested Books</mat-button-toggle>
+                <mat-button-toggle (click)="getReturnedBooks()" class="more-options">Returned Books</mat-button-toggle>
+                <mat-button-toggle (click)="getLentedBooks()" class="more-options">Lented Books</mat-button-toggle>
+                
+            </mat-button-toggle-group>
+    
+        </mat-expansion-panel>
+<table *ngIf=bookDetail>
+    <thead><th>Book Name</th>
+        <th>Book Author Name</th>
+        <th>Book ISBN Number</th>
+        <th>Author Country</th>
+        <th>catogory</th>
+        <th>Duo Date</th>
+    </thead>
+    <tr *ngFor="let book of bookDetail">
+    <td>{{book.bookDetail.bookName}}</td>
+    <td>{{book.bookDetail.bookAuthorName}}</td>
+    <td>{{book.bookDetail.bookIsbnNumber}}</td><td>{{book.bookDetail.authorCountry}}</td>
+    <td>{{book.bookDetail.catogory}}</td>
+    <td>{{book.duoDate}}</td>
+    </tr>
+</table>
+</div>

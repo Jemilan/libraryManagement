@@ -4,6 +4,7 @@ import { BookDetail } from './BookDetail';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 import { MessageService } from './message.service';
+import { URLSearchParams } from 'url';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +13,22 @@ export class BookService {
   
   private const="http://localhost:8080/";
   
-  private bookDetail:BookDetail={bookId:0,
-    authorCountry:'',
-    bookAuthorName:'',
-    bookIsbnNumber:null,
-    bookName:null,
-    catogory:''
-}
+  private bookDetail:BookDetail={} as BookDetail;
 searchBookById(bookIsbnNumber:number){
-  // this.bookDetail.bookName=null;
     this.bookDetail.bookIsbnNumber=bookIsbnNumber;
-    return this.httpClient.post<BookDetail[]>(this.const+"search",this.bookDetail);
+    this.bookDetail.bookName=null;
+    // const param:URLSearchParams=new URLSearchParams();
+    // for (const key in this.bookDetail) {
+    //   if (this.bookDetail.hasOwnProperty(key)) {
+    //     const element = this.bookDetail[key];
+    //     param.set(key,element);
+    //   }
+    // }
+  return this.httpClient.post<BookDetail[]>(this.const+"search",this.bookDetail);
   }
   searchBooksByName(bookName:string){
-    // this.bookDetail.bookId=undefined;
     this.bookDetail.bookName=bookName;
+    this.bookDetail.bookIsbnNumber=null;
     return this.httpClient.post<BookDetail[]>(this.const+"search",this.bookDetail);
   }
   requestBook(bookDetails: BookDetail) {

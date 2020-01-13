@@ -1,0 +1,14 @@
+<table  *ngIf=userDetails >
+    <th>User Id</th>
+    <th>User Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <tr (click)="getUser(userDetail)" *ngFor="let userDetail of userDetails">
+        <td>{{userDetail.userId}}</td>
+        <td>{{userDetail.userName}}</td>
+        <td>{{userDetail.email}}</td>
+        <td>{{userDetail.phoneNumber}}</td>
+
+    </tr>
+</table>
+<app-user-detail  [userDetail]="userDetail" matRipple ></app-user-detail>
