@@ -1,9 +1,12 @@
+@import '~@angular/material/theming';
+$primary: mat-palette($mat-deep-purple);
+
 form{
     align-content: center;
     margin-left: 40%;
     width: 20%;
     h2{
-        color: rgba($color:#00c3ffa1, $alpha: 0.5);
+        color:mat-color($primary);
         font-style: italic;
         font-family: monospace;
         font-size: 3em;

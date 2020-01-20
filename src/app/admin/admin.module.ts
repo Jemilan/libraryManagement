@@ -15,7 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatBadgeModule} from '@angular/material/badge'
-import {MatTableModule} from '@angular/material'
+import {MatTableModule, MatSnackBarModule, MatInputModule, MatPaginatorModule} from '@angular/material'
 import { UserDetailComponent } from './user-details/user-detail/user-detail.component';
 
 
@@ -27,7 +27,8 @@ import { UserDetailComponent } from './user-details/user-detail/user-detail.comp
     AdminRoutingModule,
     NgxPaginationModule,
     FormsModule,MatRippleModule,MatMenuModule,MatSidenavModule,MatButtonModule,
-    MatButtonToggleModule,MatExpansionModule,MatBadgeModule,MatTableModule
+    MatButtonToggleModule,MatExpansionModule,MatBadgeModule,MatTableModule,
+    MatSnackBarModule,MatButtonModule,MatInputModule,MatPaginatorModule
   ]
 })
 export class AdminModule { }

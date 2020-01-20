@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'
 import {MatSidenavModule} from '@angular/material/sidenav'
 import {MatListModule} from '@angular/material/list'
-import {MatTableModule,MatPaginatorModule,MatSortModule} from '@angular/material'
+import {MatToolbarModule,MatTableModule,MatPaginatorModule,MatSortModule,MatIconModule, MatSnackBarModule} from '@angular/material'
 
 
 import { CommonModule } from '@angular/common';
@@ -33,7 +33,7 @@ import {MatButtonModule} from '@angular/material/button'
     CommonModule,HttpClientModule,
     BrowserAnimationsModule,MatSidenavModule,MatListModule,MatBadgeModule,
     MatInputModule,MatButtonModule,MatTableModule,MatPaginatorModule,
-    MatSortModule
+    MatSortModule,MatIconModule,MatToolbarModule,MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

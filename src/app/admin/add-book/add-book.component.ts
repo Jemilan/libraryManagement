@@ -4,6 +4,7 @@ import { BookService } from '../../book.service';
 import { MessageService } from '../../message.service';
 import { LoginService } from '../../login.service';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-add-book',
@@ -14,12 +15,16 @@ export class AddBookComponent implements OnInit {
   private bookDetail:BookDetail={} as BookDetail;
 
   private message:string;
-  constructor(private router:Router,private bookService:BookService,private messageService:MessageService) 
+  constructor(private snackbar:MatSnackBar,private router:Router,private bookService:BookService,private messageService:MessageService) 
   {
    }
   addBook(){
     this.bookService.addBook(this.bookDetail).
-      subscribe(message=>this.messageService.addMessage(message));
+      subscribe(message=>{this.messageService.addMessage(message)
+        this.snackbar.open(message,'',{
+          duration:2000
+        })
+      });
     this.bookDetail={} as BookDetail;
   }
   ngOnInit() {

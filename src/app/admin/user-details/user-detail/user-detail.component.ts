@@ -1,8 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { LoginService } from 'src/app/login.service';
 import { UserDetail } from 'src/app/UserDetail';
 import { RequestService } from 'src/app/request.service';
 import { RequestDetail } from 'src/app/RequestDetail';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-user-detail',
@@ -10,13 +11,21 @@ import { RequestDetail } from 'src/app/RequestDetail';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit ,OnChanges{
-    requestedBooks:RequestDetail[]=null;
+ 
+  @Input()
+  userDetail:UserDetail;
+  @ViewChild(MatPaginator,{static:true})paginator:MatPaginator
+  
+  requestedBooks:RequestDetail[]=null;
     returnedBooks:RequestDetail[]=null;
-    bookDetail:RequestDetail[]=null;
+    bookDetail;
     lentedBooks:RequestDetail[]=null;
   isClicked: boolean=false;
+  rowDetail=["bookId","bookName","bookAuthorName","bookIsbnNumber","duoDate","catogory"];
+
   ngOnChanges(changes: SimpleChanges): void {
-    this.userDetail=changes.userDetail.currentValue
+    if(this.userDetail){
+    this.userDetail=changes.userDetail.currentValue;
     this.requestService.getUserNotifications(this.userDetail.userId).subscribe(
       requestDetail=>
       {
@@ -25,24 +34,24 @@ export class UserDetailComponent implements OnInit ,OnChanges{
         this.returnedBooks=requestDetail["lentHistory"];
         this.lentedBooks=requestDetail["lentedBooks"];
       });
+    }
   }
   private requestDetail:Map<String,RequestDetail[]>=new Map;
   constructor(private requestService:RequestService, private loginService:LoginService) { }
   getRequestedBooks(){
-    console.log(this.requestedBooks)
-    this.bookDetail=this.requestedBooks.length?this.requestedBooks:null;
+    this.bookDetail=new MatTableDataSource(this.requestedBooks.length?this.requestedBooks:null);
+    this.bookDetail.paginator=this.paginator
   }
   getReturnedBooks(){
-    console.log(this.returnedBooks)
-    this.bookDetail=this.returnedBooks.length?this.returnedBooks:null;
-    console.log(this.bookDetail)
+    this.bookDetail=new MatTableDataSource(this.returnedBooks.length?this.returnedBooks:null);
+    this.bookDetail.paginator=this.paginator
   }
   getLentedBooks(){
-    this.bookDetail=this.lentedBooks.length?this.lentedBooks:null;
+    this.bookDetail=new MatTableDataSource(this.lentedBooks.length?this.lentedBooks:null);
+    this.bookDetail.paginator=this.paginator
   }
   toggle(){
     var dropDownContent=document.getElementsByClassName('drop-down')[0]
-    console.log(dropDownContent)
     if(dropDownContent.innerHTML=="show less"){
       dropDownContent.innerHTML="show more"
       this.bookDetail=null;
@@ -54,6 +63,4 @@ export class UserDetailComponent implements OnInit ,OnChanges{
   }
   ngOnInit() {
   }
-  @Input()
-  userDetail:UserDetail;
 }

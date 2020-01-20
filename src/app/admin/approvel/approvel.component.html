@@ -1,6 +1,4 @@
 
-        <td><button mat-button	(click)="acceptRequest(request.requestId)">Approve</button></td>
-        <td><button	mat-button (click)="rejectRequest(request.requestId)">Reject</button></td>
 <div *ngIf="true">
 
 <table mat-table [dataSource]="lendDetail">
@@ -35,6 +33,15 @@
         <th mat-header-cell *matHeaderCellDef>Book Name</th>
         <td mat-cell *matCellDef="let request">{{request.bookDetail.bookName}}</td>
     </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let request">    
+            <button mat-button	(click)="acceptRequest(request.requestId)">Approve</button>
+            <button	mat-button (click)="rejectRequest(request.requestId)">Reject</button>
+        </td>
+    </ng-container>
+
     <tr mat-header-row *matHeaderRowDef="rowDetail"></tr>
     <tr mat-row *matRowDef="let row;columns:rowDetail"></tr>
 </table>
@@ -64,9 +71,12 @@
         <td mat-cell *matCellDef="let request">{{request.bookDetail.bookAuthorName}}</td>
     </ng-container>
     
-    <ng-container matColumnDef="lendStatus">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let request">{{request.lendStatus}}</td>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let request">    
+            <button mat-button	(click)="acceptRequest(request.requestId)">Approve</button>
+            <button	mat-button (click)="rejectRequest(request.requestId)">Reject</button>
+        </td>
     </ng-container>
     
     <ng-container matColumnDef="bookName">
@@ -79,41 +89,43 @@
 </div>
 <div *ngIf="true"> 
 
-<table mat-table [dataSource]="DelayedReturn">
-    <ng-container matColumnDef="requestId">
-        <th mat-header-cell *matHeaderCellDef>Request Id</th>
-        <td mat-cell *matCellDef="let request">{{request.requestId}}</td>
-    </ng-container>
-    <ng-container matColumnDef="userId">
-        <th mat-header-cell *matHeaderCellDef>User Id</th>
-        <td mat-cell *matCellDef="let request">{{request.userDetail.userId}}</td>
-    </ng-container>
-    <ng-container matColumnDef="bookId">
-        <th mat-header-cell *matHeaderCellDef>Book Id</th>
-        <td mat-cell *matCellDef="let request">{{request.bookDetail.bookId}}</td>
-    </ng-container>
-    <ng-container matColumnDef="bookIsbnNumber">
-        <th mat-header-cell *matHeaderCellDef>Book ISBN Number</th>
-        <td mat-cell *matCellDef="let request">{{request.bookDetail.bookIsbnNumber}}</td>
-    </ng-container>
+    <table mat-table [dataSource]="DelayedReturn">
+        <ng-container matColumnDef="requestId">
+            <th mat-header-cell *matHeaderCellDef>Request Id</th>
+            <td mat-cell *matCellDef="let request">{{request.requestId}}</td>
+        </ng-container>
+        <ng-container matColumnDef="userId">
+            <th mat-header-cell *matHeaderCellDef>User Id</th>
+            <td mat-cell *matCellDef="let request">{{request.userDetail.userId}}</td>
+        </ng-container>
+        <ng-container matColumnDef="bookId">
+            <th mat-header-cell *matHeaderCellDef>Book Id</th>
+            <td mat-cell *matCellDef="let request">{{request.bookDetail.bookId}}</td>
+        </ng-container>
+        <ng-container matColumnDef="bookIsbnNumber">
+            <th mat-header-cell *matHeaderCellDef>Book ISBN Number</th>
+            <td mat-cell *matCellDef="let request">{{request.bookDetail.bookIsbnNumber}}</td>
+        </ng-container>
     
-    <ng-container matColumnDef="bookAuthorName">
-        <th mat-header-cell *matHeaderCellDef>Book Author Name</th>
-        <td mat-cell *matCellDef="let request">{{request.bookDetail.bookAuthorName}}</td>
-    </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let request">    
+                <button mat-button	(click)="acceptRequest(request.requestId)">Approve</button>
+                <button	mat-button (click)="rejectRequest(request.requestId)">Reject</button>
+            </td>
+        </ng-container>
     
-    <ng-container matColumnDef="lendStatus">
-        <th mat-header-cell *matHeaderCellDef>Status</th>
-        <td mat-cell *matCellDef="let request">{{request.lendStatus}}</td>
-    </ng-container>
-    
-    <ng-container matColumnDef="bookName">
-        <th mat-header-cell *matHeaderCellDef>Book Name</th>
-        <td mat-cell *matCellDef="let request">{{request.bookDetail.bookName}}</td>
-    </ng-container>
-    <tr mat-header-row *matHeaderRowDef="rowDetail"></tr>
-    <tr mat-row *matRowDef="let row;columns:rowDetail"></tr>
-</table>
-</div>
-        <td><button mat-button	(click)="acceptReturn(request.requestId)">Approve</button></td>
-        <td><button	mat-button (click)="rejectReturn(request.requestId)">Reject</button></td>
+        <ng-container matColumnDef="bookAuthorName">
+            <th mat-header-cell *matHeaderCellDef>Book Author Name</th>
+            <td mat-cell *matCellDef="let request">{{request.bookDetail.bookAuthorName}}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="bookName">
+            <th mat-header-cell *matHeaderCellDef>Book Name</th>
+            <td mat-cell *matCellDef="let request">{{request.bookDetail.bookName}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="rowDetail"></tr>
+        <tr mat-row *matRowDef="let row;columns:rowDetail"></tr>
+    </table>
+    </div>
+            

@@ -1,12 +1,25 @@
-
 <form (ngSubmit)="addBook()">
-    <h2 class="header" >Add Book</h2>
-    <input type="text" [(ngModel)]="bookDetail.bookName" name="bookName" placeholder="Book Name"> 
-    <input type="text" [(ngModel)]="bookDetail.bookAuthorName" name="bookAuthorName" placeholder="Author Name"> 
-    <input type="text" [(ngModel)]="bookDetail.authorCountry "  name="authorCountry" placeholder="Author Country"> 
-    <input type="text" [(ngModel)]="bookDetail.bookIsbnNumber"  name="bookIsbnNumber" placeholder="Book ISBN Number"> 
-    <input type="text" [(ngModel)]="bookDetail.catogory"  name="catogory" placeholder="Book Catogory"> 
+    <h2 class="header">Add Book</h2>
+    <mat-form-field appearance="outline">
+        <mat-label>Book Name</mat-label>
+        <input matInput type="text" [(ngModel)]="bookDetail.bookName" name="bookName" >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Book Author Name</mat-label>
+        <input matInput type="text" [(ngModel)]="bookDetail.bookAuthorName" name="bookAuthorName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Book Author Country</mat-label>
+        <input matInput type="text" [(ngModel)]="bookDetail.authorCountry " name="authorCountry" >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Book Isbn Number</mat-label>
+        <input matInput type="text" [(ngModel)]="bookDetail.bookIsbnNumber" name="bookIsbnNumber" >
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Book Catogory</mat-label>
+        <input matInput  type="text" [(ngModel)]="bookDetail.catogory" name="catogory" >
+    </mat-form-field>
 
-    <input type="submit" value="Add Book">
+    <button mat-button type="submit">Add Book</button> 
 </form>
-

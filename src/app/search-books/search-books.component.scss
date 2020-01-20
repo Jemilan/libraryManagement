@@ -14,19 +14,12 @@ form{
     display: flex;
     justify-content: center;
     width: 100%;
-    input[type="text"]{
-        font-size: 30px;
-        height: 30px;
-        width: 90%;
-    }
-    button{
-        svg{
-            height: 30px;
-            width: 30px;;
-        }
-    }
+
 }
 .table{
-    width: 50%;
+    width: 100%;
     align-content: center;
+}
+mat-form-field{
+    width:100%;
 }

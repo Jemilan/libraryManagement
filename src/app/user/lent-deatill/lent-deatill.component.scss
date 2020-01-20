@@ -15,28 +15,6 @@ form{
 table{
     background-color: white;
     width: 100%;
-    tr:nth-child(even) {background-color: #bec9cca1;
-    color: blue;
-    button{
-        color: blue;
-        background-color: initial;
-        border: none;
     
-        cursor: pointer;
-    }
-        td{
-         padding:0px;
-        }
-    } 
     margin-top: 5%;
-    button{
-        padding: 0px;
     }
-    tr{
-        height: 30px;
-        }
-    thead{
-        height: 20px;
-        background-color: rgba($color: #386faf, $alpha: 1.0);
-    }
-}

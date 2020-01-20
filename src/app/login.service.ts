@@ -3,6 +3,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { UserDetail } from './UserDetail';
 import { Router, RouterLinkActive } from '@angular/router';
 import { MessageService } from './message.service';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +32,7 @@ export class LoginService {
   response: Object;
   role:string;  
   authorizationHeader:HttpHeaders;
-  constructor(private httpClient:HttpClient,private router :Router,private messageService:MessageService) { }
+  constructor(private snakbar:MatSnackBar,private httpClient:HttpClient,private router :Router,private messageService:MessageService) { }
   private const="http://localhost:8080/";
 
   authenticateCredentials(credentials){
@@ -57,6 +58,9 @@ export class LoginService {
     }
   },error=>{
     if(error.status=="401"){
+      this.snakbar.open('Invalid Credentials','',{
+        duration:2000
+      })
       this.messageService.addError("Invalid Credentials");
       setTimeout(this.messageService.clear,5000)
     }

@@ -1,14 +1,22 @@
-<table  *ngIf=userDetails >
-    <th>User Id</th>
-    <th>User Name</th>
-    <th>Email</th>
-    <th>Phone Number</th>
-    <tr (click)="getUser(userDetail)" *ngFor="let userDetail of userDetails">
-        <td>{{userDetail.userId}}</td>
-        <td>{{userDetail.userName}}</td>
-        <td>{{userDetail.email}}</td>
-        <td>{{userDetail.phoneNumber}}</td>
-
-    </tr>
+<table mat-table [dataSource]=userDetails>
+    <ng-container matColumnDef="userId">
+        <th mat-header-cell *matHeaderCellDef>User Id</th>
+        <td mat-cell *matCellDef="let detail">{{detail.userId}}</td>
+    </ng-container>
+    <ng-container matColumnDef="userName">
+        <th mat-header-cell *matHeaderCellDef>User Name</th>
+        <td mat-cell *matCellDef="let detail">{{detail.userName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let detail">{{detail.email}}</td>
+    </ng-container>
+    <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+        <td mat-cell *matCellDef="let detail">{{detail.phoneNumber}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row (click)="getUser(detail)" *matRowDef="let detail;columns:columns"></tr>
 </table>
-<app-user-detail  [userDetail]="userDetail" matRipple ></app-user-detail>
+
+<app-user-detail  [userDetail]="userDetail"  ></app-user-detail>

@@ -4,7 +4,7 @@ import {RequestDetail} from '../../RequestDetail'
 import { MessageService } from '../../message.service';
 import { LoginService } from '../../login.service';
 import { Router } from '@angular/router';
-import {MatTableDataSource} from '@angular/material'
+import {MatTableDataSource, MatSnackBar} from '@angular/material'
 
 @Component({
   selector: 'app-approvel',
@@ -14,10 +14,10 @@ import {MatTableDataSource} from '@angular/material'
 export class ApprovelComponent implements OnInit {
   p=1;
   length: number=0;
-  rowDetail=["requestId","userId","bookId","bookName","bookAuthorName","bookIsbnNumber"];
+  rowDetail=["requestId","userId","bookId","bookName","bookAuthorName","bookIsbnNumber","actions"];
  
   
-  constructor(private router:Router,private lendingService:RequestService,private messageService:MessageService) { }
+  constructor(private snackbar:MatSnackBar,private router:Router,private lendingService:RequestService,private messageService:MessageService) { }
   private message:string;
   private requestDetail
   lendDetail
@@ -29,32 +29,49 @@ export class ApprovelComponent implements OnInit {
        this.requestDetail[property]=this.requestDetail[property].filter(currentBookDetail=>{
         if(requestId!=currentBookDetail.requestId)
          { 
-            return currentBookDetail;}
-      });
+            return currentBookDetail;
+          }});
+      this.assignValues();
     }
   }
   
   acceptRequest(requestId:number){
     this.lendingService.acceptRequest(requestId).
-      subscribe(message=>{this.messageService.addMessage(message);    
+      subscribe(message=>{
+        this.snackbar.open(message,'',{
+          duration:2000
+        })
+        this.messageService.addMessage(message);    
         this.removeRequest(requestId)
       });
   }
   rejectRequest(requestId:number){
     this.lendingService
-      .rejectRequest(requestId).subscribe(message=>{this.messageService.addMessage(message)
+      .rejectRequest(requestId).subscribe(message=>{
+        this.snackbar.open(message,'',{
+          duration:2000
+        })
+        this.messageService.addMessage(message)
         this.removeRequest(requestId)
       });
   }
   acceptReturn(requestId:number){
     this.lendingService.acceptReturn(requestId)
-      .subscribe(message=>{this.messageService.addMessage(message)
+      .subscribe(message=>{
+        this.snackbar.open(message,'',{
+          duration:2000
+        })
+        this.messageService.addMessage(message)
         this.removeRequest(requestId)
       });
   }
   rejectReturn(requestId:number){
     this.lendingService.rejectReturn(requestId)
-      .subscribe(message=>{this.messageService.addMessage(message)
+      .subscribe(message=>{
+        this.snackbar.open(message,'',{
+          duration:2000
+        })
+        this.messageService.addMessage(message)
     this.removeRequest(requestId)
   });
   }
@@ -63,16 +80,16 @@ export class ApprovelComponent implements OnInit {
       this.length+=this.requestDetail[property].length;
     }
   }
+  assignValues(){
+    this.lendDetail=new MatTableDataSource(this.requestDetail.lendDetail);
+        this.returnDetail=new MatTableDataSource(this.requestDetail.returnDetail);
+        this.delayedReturn=new MatTableDataSource(this.requestDetail.delayedReturn);      
+  }
   ngOnInit() {
     this.lendingService.getNotifications()
       .subscribe(requestDetail=>{this.requestDetail=requestDetail;
-        this.lendDetail=new MatTableDataSource(this.requestDetail.lendDetail);
-        this.returnDetail=new MatTableDataSource(this.requestDetail.returnDetail);
-        this.delayedReturn=new MatTableDataSource(this.requestDetail.delayedReturn);
-        console.log(this.lendDetail)
-        console.log(this.returnDetail)
+        this.assignValues();
         this.getLength();
-        console.log(this.lendDetail)
       });
     this.messageService.clear();
   }

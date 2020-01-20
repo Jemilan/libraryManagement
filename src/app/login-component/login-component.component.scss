@@ -1,4 +1,6 @@
-$primary:#0000ff91;
+@import '~@angular/material/theming';
+$primary: mat-palette($mat-deep-purple);
+
 $accent:rgba($color:#00c3ffa1, $alpha: 0.5);
 $secondary:rgba($color: #00c3ffa1, $alpha: 1.0);
 $warn:red;
@@ -11,7 +13,7 @@ $warn:red;
     margin-left: 40%;
     width: 20%;
     .header{
-        color: $accent;
+        color: mat-color($primary);
         font-style: italic;
         font-family: monospace;
         font-size: 3em;

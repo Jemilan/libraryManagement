@@ -1,29 +1,16 @@
+@import '~@angular/material/theming';
+$primary: mat-palette($mat-deep-purple);
+
 form{
     align-content: center;
     margin-left: 40%;
     width: 20%;
     h2{
-        color: rgba($color:#00c3ffa1, $alpha: 0.5);
-        font-style: italic;
-        font-family: monospace;
-        font-size: 3em;
-        display: flex;
-        justify-content: center;
+        color: mat-color($primary);
+    //     font-style: italic;
+    //     font-family: monospace;
+    //     font-size: 3em;
+    //     display: flex;
+    //     justify-content: center;
     }
-    input{
-        margin-left: 20%;
-        margin-bottom: 1em;
-         display: flex;
-    
-    }
-}
-
-input[type=submit]{
-    margin-left: 30%;
-    border-radius: .5em;
-    border: none;
-    padding: 5%;
-    width: 50%;
-    background: rgba($color: #00c3ffa1, $alpha: 1.0);
-    color: white;
 }

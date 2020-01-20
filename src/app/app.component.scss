@@ -1,11 +1,16 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+$primary: mat-palette($mat-deep-purple);
 
-nav{
+mat-toolbar{
     padding: 10px;
     margin: 0px;
     color: white;
     .title{
         position: absolute;
         margin-left: 45%;
+        color: white;
+
     } 
     .login{
         float: right;
@@ -14,7 +19,6 @@ nav{
         text-decoration: none;
     }    
     display: block;
-    background-color: #0000ff91;
     .logged{
         padding: 0px;
         margin: 0px;
@@ -42,22 +46,16 @@ app-messages{
 mat-sidenav-container,mat-sidenav-content{
     height: 100%;
 }
-
 mat-sidenav-container{
-    background-color: unset;
-    mat-sidenav{
 
+    mat-sidenav{
         width: 10%;
-        background-color: #0000ff91;
         bottom: unset;
         padding-bottom: 10px;
-        mat-nav-list a{
-            color: white;
-        }
+        background-color: mat-color($primary);
     }
     mat-sidenav-content{
         width: 90%;
         float: right;
     }
 }
-

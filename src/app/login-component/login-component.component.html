@@ -1,17 +1,17 @@
 <form role="form" (submit)="login()" class="login-form">
-	<h2 class="header" >Login</h2>
+	<h2 class="header" color="primary" >Login</h2>
 	<mat-form-field appearance="outline">
 		<mat-label>UserName</mat-label>
 
 		<input matInput type="text"
-			placeholder="UserName" class="username" name="username" [(ngModel)]="credentials.username"/>
+			class="username" name="username" [(ngModel)]="credentials.username"/>
 	</mat-form-field>
 	<mat-form-field appearance="outline">
 		<mat-label>Password</mat-label>
 		<input matInput type="password" 
-			  placeholder="" name="password" [(ngModel)]="credentials.password"/>
+			   name="password" [(ngModel)]="credentials.password"/>
 	</mat-form-field>
 
-	<button mat-flat-button type="submit">Login</button>
+	<button mat-flat-button color="primary" type="submit">Login</button>
 
 </form>

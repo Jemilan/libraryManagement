@@ -3,7 +3,7 @@ import { RequestService } from '../../request.service';
 import { BookDetail } from '../../BookDetail';
 import { MessageService } from '../../message.service';
 import { Router } from '@angular/router';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-lent-deatill',
@@ -18,7 +18,7 @@ export class LentDeatillComponent implements OnInit {
   private lentHistory:BookDetail[];
   lentDetail: MatTableDataSource<BookDetail>;
   lentHistoryDetail: MatTableDataSource<BookDetail>;
-  constructor(private router:Router,private lendService:RequestService,private messageService:MessageService) { }
+  constructor(private snackbar:MatSnackBar,private router:Router,private lendService:RequestService,private messageService:MessageService) { }
   getLentBooks(){
     this.lendService.lentBooks().subscribe(
       requestDetail=>{this.lentDetails= requestDetail;
@@ -38,7 +38,10 @@ export class LentDeatillComponent implements OnInit {
         return currentBookDetail;
     });
     this.lendService.returnBook(bookDetail)
-      .subscribe(message=>this.messageService.addMessage(message));
+      .subscribe(message=>{this.messageService.addMessage(message)
+        this.snackbar.open(message,'',{
+          duration:2000
+        })});
   }
   ngOnInit() {this.getLentBooks();
     this.getLentHistory()
