@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RequestService } from '../../request.service';
-import {RequestDetail} from '../../RequestDetail'
-import { MessageService } from '../../message.service';
-import { LoginService } from '../../login.service';
+import { RequestService } from '../../Services/request.service';
+import {RequestDetail} from '../../Models/RequestDetail'
+import { MessageService } from '../../Services/message.service';
+import { LoginService } from '../../Services/login.service';
 import { Router } from '@angular/router';
 import {MatTableDataSource, MatSnackBar} from '@angular/material'
 

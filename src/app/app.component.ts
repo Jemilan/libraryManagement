@@ -1,9 +1,9 @@
 import { Component, DoCheck} from '@angular/core';
-import { LoginService } from './login.service';
-import { UserDetail } from './UserDetail';
+import { LoginService } from './Services/login.service';
+import { UserDetail } from './Models/UserDetail';
 import {environment}  from '../environments/environment'
-import { RequestService } from './request.service';
-import { RequestDetail } from './RequestDetail';
+import { RequestService } from './Services/request.service';
+import { RequestDetail } from './Models/RequestDetail';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

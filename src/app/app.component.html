@@ -30,8 +30,8 @@
         <a mat-list-item routerLink="/lentBooks">Lent Books</a> 
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav opened mode="side" class="sidenav" hasBackdrop=false color="primary" *ngIf=verifyAdmin()>      
-    <mat-nav-list color="primary">
+    <mat-sidenav opened mode="side"  hasBackdrop=false color="primary" *ngIf=verifyAdmin()>      
+    <mat-nav-list color="primary" class="sidenav">
       <a  mat-list-item color="primary" routerLink="/admin/register">Add User</a> 
       <a mat-list-item routerLink="/admin/addBook">Add Books</a> 
       <mat-list-item><a  matBadge="{{length}}" matBadgeColor="accent"  routerLink="/admin/approvel">Notification</a>

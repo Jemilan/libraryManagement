@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { LoginService } from 'src/app/login.service';
-import { UserDetail } from 'src/app/UserDetail';
-import { RequestService } from 'src/app/request.service';
-import { RequestDetail } from 'src/app/RequestDetail';
+import { LoginService } from '../../../Services/login.service';
+import { UserDetail } from 'src/app/Models/UserDetail';
+import { RequestService } from '../../../Services/request.service';
+import { RequestDetail } from 'src/app/Models/RequestDetail';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 
 @Component({

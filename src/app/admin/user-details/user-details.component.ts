@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LoginService } from 'src/app/login.service';
-import { UserDetail } from 'src/app/UserDetail';
+import { LoginService } from 'src/app/Services/login.service';
+import { UserDetail } from 'src/app/Models/UserDetail';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BookDetail } from '../../BookDetail';
-import { BookService } from '../../book.service';
-import { MessageService } from '../../message.service';
-import { LoginService } from '../../login.service';
+import { BookDetail } from '../../Models/BookDetail';
+import { BookService } from '../../Services/book.service';
+import { MessageService } from '../../Services/message.service';
+import { LoginService } from '../../Services/login.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 

@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {BookService} from '../book.service'
-import { BookDetail } from '../BookDetail';
-import { MessageService } from '../message.service';
-import { LoginService } from '../login.service';
+import {BookService} from '../Services/book.service'
+import { BookDetail } from '../Models/BookDetail';
+import { MessageService } from '../Services/message.service';
+import { LoginService } from '../Services/login.service';
 import { fromEvent } from 'rxjs';
 import {map,debounceTime,distinctUntilChanged, switchMap, catchError, retry, filter} from 'rxjs/operators'
 import { error } from 'protractor';
@@ -18,7 +18,7 @@ export class SearchBooksComponent implements OnInit {
   private bookName:string='';
   private bookId:number=null;
   rowDetail=["bookId","bookName","bookAuthorName","bookIsbnNumber","Actions","catogory"];
-  tableSource: MatTableDataSource<BookDetail>;
+  tableSource: MatTableDataSource<BookDetail>=null;
   constructor(private snackbar:MatSnackBar,private loginService:LoginService,private bookService :BookService,private messageService:MessageService) { }
   searchBooksByName(){
 
@@ -29,6 +29,8 @@ export class SearchBooksComponent implements OnInit {
         this.tableSource.paginator=this.paginator;
 
       },error=>{
+        this.tableSource=null;
+        console.log(this.tableSource)
         this.snackbar.open('The searched book could not be found','',{
           duration:2000
         })
@@ -37,6 +39,7 @@ export class SearchBooksComponent implements OnInit {
     }
     else{
     this.messageService.addError("Enter a proper Detail")
+    this.tableSource=null;
     this.snackbar.open('Enter a proper Detail','',{
       duration:2000
     })
@@ -51,6 +54,7 @@ export class SearchBooksComponent implements OnInit {
 
       },
         error=>{
+          this.tableSource=null;
           this.snackbar.open('The searched book could not be found','',{
             duration:2000
           })
@@ -58,6 +62,7 @@ export class SearchBooksComponent implements OnInit {
         });
     }
     else{
+      this.tableSource=null;
       this.snackbar.open('Enter a proper Detail','',{
         duration:2000
       })
@@ -77,7 +82,7 @@ export class SearchBooksComponent implements OnInit {
   ngAfterViewInit(){
     const searchBox=document.getElementById("searchBox");
     fromEvent(searchBox,'keyup').pipe(
-      map((e:KeyboardEvent)=>(e.target).value),
+      map((e:KeyboardEvent)=>(<HTMLInputElement>e.target).value),
       filter(value=>value!==""),
       debounceTime(10),
       distinctUntilChanged(),
@@ -85,7 +90,6 @@ export class SearchBooksComponent implements OnInit {
         return this.bookService.searchBooksByName(input)
       }),
       retry()
-      // catchError(this.())
     ).subscribe(response=>{this.bookDetail=response
       this.tableSource=new MatTableDataSource(this.bookDetail);
       this.tableSource.paginator=this.paginator;

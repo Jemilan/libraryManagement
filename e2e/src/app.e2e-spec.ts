@@ -1,9 +1,14 @@
 import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { browser, logging, element, promise } from 'protractor';
 
 describe('workspace-project App', () => {
   let page: AppPage;
+  let password={
+    userName:"wrong",
+    password:"wtond"
+  }
 
+  let  http=require('protractor-http-client');
   beforeEach(() => {
     page = new AppPage();
   });
@@ -16,13 +21,20 @@ describe('workspace-project App', () => {
     page.loginPage();
     
     expect(page.getHeader()).toContain('Login')
+    expect(page.login(password));
+    expect(page.logout()).toBeTruthy('The logout button should appear')
+    expect(page.getHeader()).toContain('Login')
   })
-  it('dsfajk',()=>{
+  it('The Login should work',()=>{
     page.loginPage()
-    expect(page.login()).toBeTruthy('should return error Message');
-    expect(page.error()).toBeFalsy('should not return error Message');
-
+    page.login()
+    expect(page.logout()).toBeTruthy('The logout button should appear')
+    expect(page.search()).toBeTruthy('search')
+    expect(page.approvelPage()).toBeTruthy('Approvel');
   })
+  it('The search Book Should work',()=>{
+    expect(page.search()).toBeTruthy('search');
+  });
   
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser

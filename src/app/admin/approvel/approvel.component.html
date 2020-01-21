@@ -1,7 +1,7 @@
 
-<div *ngIf="true">
+<div *ngIf="">
 
-<table mat-table [dataSource]="lendDetail">
+<table mat-table [dataSource]="lendDetail" class="lendDetail">
     <ng-container matColumnDef="requestId">
         <th mat-header-cell *matHeaderCellDef>Request Id</th>
         <td mat-cell *matCellDef="let request">{{request.requestId}}</td>
