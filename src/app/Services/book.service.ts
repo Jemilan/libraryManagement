@@ -11,7 +11,6 @@ import { URLSearchParams } from 'url';
 })
 export class BookService {
   
-  private const="http://localhost:8080/";
   
   private bookDetail:BookDetail={} as BookDetail;
 searchBookById(bookIsbnNumber:number){
@@ -24,23 +23,23 @@ searchBookById(bookIsbnNumber:number){
     //     param.set(key,element);
     //   }
     // }
-  return this.httpClient.post<BookDetail[]>(this.const+"search",this.bookDetail);
+  return this.httpClient.post<BookDetail[]>("search",this.bookDetail);
   }
   searchBooksByName(bookName:string){
     this.bookDetail.bookName=bookName;
     this.bookDetail.bookIsbnNumber=null;
-    return this.httpClient.post<BookDetail[]>(this.const+"search",this.bookDetail);
+    return this.httpClient.post<BookDetail[]>("search",this.bookDetail);
   }
   requestBook(bookDetails: BookDetail) {
     if(!this.loginService.authenticated){    
       this.messageService.addError("Please login and request Book")
       this.router.navigateByUrl("/login")
     }else{
-    return this.httpClient.post<string>(this.const+"getBook",bookDetails,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<string>("getBook",bookDetails);
   }
 }
   addBook(bookDetail: BookDetail) {
-    return this.httpClient.post<string>(this.const+"addBook",bookDetail,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<string>("addBook",bookDetail);
   }
   
   constructor(private httpClient:HttpClient,private loginService:LoginService,private router:Router,private messageService:MessageService) { }

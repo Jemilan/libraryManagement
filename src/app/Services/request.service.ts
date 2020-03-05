@@ -9,36 +9,35 @@ import { LoginService } from './login.service';
 })
 export class RequestService {
   getUserNotifications(userId: number) {
-    return this.httpClient.get<Map<String,RequestDetail[]>>(this.const+"getUserDetail?userId="+userId,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.get<Map<String,RequestDetail[]>>("getUserDetail?userId="+userId);
   }
 
   returnBook(bookDetail:BookDetail) {
-    return this.httpClient.post<string>(this.const+"returnBook?bookId="+bookDetail.bookId,null,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<string>("returnBook?bookId="+bookDetail.bookId,null);
   }
   rejectReturn(requestId:number) {
-    return this.httpClient.post<string>(this.const+"rejectReturn?requestId="+requestId,null,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<string>("rejectReturn?requestId="+requestId,null);
   }
   acceptReturn(requestId:number) {
-    return this.httpClient.post<string>(this.const+"acceptReturn?requestId="+requestId,null,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<string>("acceptReturn?requestId="+requestId,null);
   }
   rejectRequest(requestId:number) {
-    return this.httpClient.post<string>(this.const+"rejectRequest?requestId="+requestId,null,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<string>("rejectRequest?requestId="+requestId,null);
   }
   acceptRequest(requestId:number) {
-    return this.httpClient.post<string>(this.const+"acceptRequest?requestId="+requestId,null,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<string>("acceptRequest?requestId="+requestId,null);
   }
   lentBooks(){
     console.log(this.loginService.authorizationHeader)
-    return this.httpClient.post<BookDetail[]>(this.const+"lentBooks",null,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<BookDetail[]>("lentBooks",null);
   }
   lentHistory(){
-    return this.httpClient.post<BookDetail[]>(this.const+"lentHistory",null,{headers:this.loginService.authorizationHeader});
+    return this.httpClient.post<BookDetail[]>("lentHistory",null);
   }
   getNotifications() {
   
-    return this.httpClient.get<Map<String,RequestDetail[]>>(this.const + "approvel",{headers:this.loginService.authorizationHeader});
+    return this.httpClient.get<Map<String,RequestDetail[]>>("approvel");
   }
-  private const="http://localhost:8080/";
 
   constructor(private httpClient:HttpClient,private loginService:LoginService) { 
   }

@@ -10,10 +10,10 @@ import { MatSnackBar } from '@angular/material';
 })
 export class LoginService {
   getUser(currentValue: string) {
-    return this.httpClient.get<UserDetail>(this.const+"getUser?userName="+currentValue,{headers:this.authorizationHeader});
+    return this.httpClient.get<UserDetail>("getUser?userName="+currentValue,{headers:this.authorizationHeader});
   }
   getAllUsers() {
-    return this.httpClient.get<UserDetail[]>(this.const+"getAll",{headers:this.authorizationHeader})
+    return this.httpClient.get<UserDetail[]>("getAll",{headers:this.authorizationHeader})
   }
   logout() {
     this.role="";
@@ -33,7 +33,6 @@ export class LoginService {
   role:string;  
   authorizationHeader:HttpHeaders;
   constructor(private snakbar:MatSnackBar,private httpClient:HttpClient,private router :Router,private messageService:MessageService) { }
-  private const="http://localhost:8080/";
 
   authenticateCredentials(credentials){
     
@@ -41,7 +40,7 @@ export class LoginService {
       'Authorization' : 'Basic ' + btoa(credentials.username + ':' + credentials.password),
       'X-Requested-With': 'XMLHttpRequest' // to suppress 401 browser popup
       } : {});
-    return this.httpClient.post(this.const+"user",null,{headers:this.authorizationHeader});
+    return this.httpClient.post("user",null,{headers:this.authorizationHeader});
   }
   authenticate(credentials){
     console.log(credentials)
@@ -74,7 +73,7 @@ export class LoginService {
     return false;
   }
   register(registerDetail: UserDetail) {
-    return this.httpClient.post<string>(this.const+"register",registerDetail);
+    return this.httpClient.post<string>("register",registerDetail);
   }
 
 }

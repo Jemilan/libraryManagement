@@ -11,6 +11,7 @@ import { ApprovelComponent } from './admin/approvel/approvel.component';
 import { RegisterComponent } from './admin/register/register.component';
 import { AtuthGaurdGuard } from './auth/atuth-gaurd.guard';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
+import { ReRoutService } from './re-rout.service';
 
 
 const routes: Routes = [{path:'searchBook',component:SearchBooksComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [{path:'searchBook',component:SearchBooksComponent},
   imports: [RouterModule.forRoot(routes)
     ],
   exports: [RouterModule],
-  providers:[[XhrInterceptorService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptorService, multi: true }]]
+  providers:[[XhrInterceptorService, { provide: HTTP_INTERCEPTORS, useClass: XhrInterceptorService, multi: true }],
+  [XhrInterceptorService, { provide: HTTP_INTERCEPTORS, useClass: ReRoutService, multi: true }]]
 })
 export class AppRoutingModule { }
